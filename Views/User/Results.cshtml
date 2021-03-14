@@ -1,0 +1,66 @@
+﻿@using Scout_game.modules;
+@using Scout_game.Models; 
+@using System.Linq;
+<h1>Průběžné Výsledky</h1>
+<div align="center">
+    @{
+        // page with results
+        
+        if (true) //manual switch, -- in release provided by boolean in db
+        {
+            <h2>CS-GO</h2>
+            int Cout = 1;
+            foreach (List<Team> group in await new Database().Get_Result("CS-GO"))  // gets list of groups, and foreach it
+            {
+                group.Sort((x, y) => y.points.CompareTo(x.points)); // sorts every object in group list by .points parameter
+                <div class="matches" align="center">
+                    <h3>skupina @Cout.ToString() </h3> 
+                    <table align="center">
+                        <tr>
+                            <th>Skupina</th>
+                            <th>body</th>
+                        </tr>
+                        @foreach (Team team in group) // list in teams in group list and write their name, and points in table
+                        {
+                            <tr>
+                                <td>@team.Name</td>
+                                <td>@team.points</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                Cout += 1; //increase Cout used for group numbers
+            }
+
+            <h2>LoL</h2>
+            int Coutl = 1;
+            foreach (List<Team> group in await new Database().Get_Result("LoL")) // gets list of groups, and foreach it 
+            {
+                if (group.Count != 0)
+                {
+                    group.Sort((x, y) => y.points.CompareTo(x.points)); // sorts every object in group list by .points parameter
+                    <div class="matches" align="center">
+                        <h3>skupina @Convert.ToString(Coutl) </h3>
+                        <table align="center">
+                            <tr>
+                                <th>Skupina</th>
+                                <th>body</th>
+                            </tr>
+                            @foreach (Team team in group) // list in teams in group list and write their name, and points in table
+                            {
+                                <tr>
+                                    <td>@team.Name</td>
+                                    <td>@team.points</td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                    Coutl += 1; //increase Cout used for group numbers
+                }
+
+            }
+        }
+
+
+    }
+</div>

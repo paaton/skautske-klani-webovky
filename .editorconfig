@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# CS0252: Possible unintended reference comparison; left hand side needs cast
+dotnet_diagnostic.CS0252.severity = none
+
+# CS0642: Possible mistaken empty statement
+dotnet_diagnostic.CS0642.severity = none
+
+# IDE1006: Naming Styles
+dotnet_diagnostic.IDE1006.severity = none

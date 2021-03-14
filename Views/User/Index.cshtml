@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Přihlášení";
+}
+<h1 class="title">Přihlášení do skautského klání</h1>
+
+<form method="post" asp-controller="user" asp-action="login">
+
+    <input class="input" type="text" name="username" placeholder="přihlašovací jméno">
+    <input class="input" type="password" name="password" placeholder="heslo">
+    <br />
+    <input class="button" type="submit" value="Login">
+    
+    @if (TempData["error"] != null)// if this page is retuned with Tempdata, then it shows here - mostly info about bad login credentials
+    {
+        <br>
+        <a style="color : red"> @TempData["error"] </a>
+    }
+    </form>

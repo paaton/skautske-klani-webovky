@@ -1,0 +1,26 @@
+﻿
+@{ViewData["Title"] = "Vítej"; }
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/site.css" />
+</head>
+
+@if (true) //manual switch for registration -- in release provided by boolean in db
+{ 
+    <body>
+        <h1 class="title ; center">Registrace</h1>
+        <form action="/home/Create/" method="post">
+            <input class="input" type="text" name="Name" placeholder="Jméno týmu" />
+            <input class="input" type="text" name="User" placeholder="tvůj discord nick bez tagu" />
+            <input class="input" type="text" name="Tag" placeholder="číselný tag bez # za nickem" />
+            <select class="select_game" name="Game">
+                <option>CS-GO</option>
+                <option>LoL</option>
+            </select>
+            <input class="input" type="text" name="Login_username" placeholder="přihlašovací jméno" />
+            <br />
+            <input class="button ; focus" type="submit" value="Odeslat" />
+        </form>
+        <h4 style="color : red">@ViewBag.error</h4>
+    </body>
+}

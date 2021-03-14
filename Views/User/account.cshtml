@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<h1 class="title ; center"> jseš přihlášen jako @HttpContextAccessor.HttpContext.Session.GetString("Team_name") </h1>
+<br />
+@{
+    if (@HttpContextAccessor.HttpContext.Session.GetString("member") == null) // asks for team members, if they dont exist
+    {<h1>zde prosím vyplň 4 zbylé účastníky </h1>
+     <h5>
+         vyplňuj prosím discord jména dostupná po kliknutí na profil uživatele a zkopírování jména,  jména jsou ve formátu: Druidisimo#9418
+     </h5>
+        <form asp-action="Add_members" method="post">
+            <input class="input" type="text" name="Name1" placeholder="1. Hráč" />
+            <input class="input" type="text" name="Name2" placeholder="2. Hráč" />
+            <input class="input" type="text" name="Name3" placeholder="3. Hráč" />
+            <input class="input" type="text" name="Name4" placeholder="4. Hráč" />
+            <br />
+            <input class="button ; focus" type="submit" value="Odeslat" />
+        </form>
+        <h4 style="color : red">@TempData["error"]</h4>
+    }
+    else
+    {
+    <h3>Vítej zpátky @HttpContextAccessor.HttpContext.Session.GetString("User_name")</h3>
+    <h5>Hraješ ve hře @HttpContextAccessor.HttpContext.Session.GetString("Team_Game")</h5>
+    }
+}
+
+
+
+
+
+
+
+

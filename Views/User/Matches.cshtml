@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@using Scout_game.modules;
+@{/* this page provides whole frontend system for entering results of yout tournament matches */}
+
+
+
+<div align="center">
+
+@{
+    // gets teams in your group
+    List<Team> Group = await new Database().GetTeamsOfGroup(Convert.ToInt32(HttpContextAccessor.HttpContext.Session.GetInt32("Team_Group")));
+    if (Group != null) // check if there are teams to play with
+    {
+        <h1>Tvoje zápasy</h1>
+        foreach (Team team in Group) // loop of teams
+        {
+            if (team.Game == HttpContextAccessor.HttpContext.Session.GetString("Team_Game") && team.Doc_id != HttpContextAccessor.HttpContext.Session.GetString("Team_Id")) // check game, and id to prevent people to be able play with theirself and with others fom another game
+            {
+                string ID = HttpContextAccessor.HttpContext.Session.GetString("Team_Id");
+                string GAME = HttpContextAccessor.HttpContext.Session.GetString("Team_Game");
+                string matchstate = await new Database().Checkmatchstate(team.Doc_id, ID, GAME); // check state of current match in loser perspective
+
+                if (matchstate == null) // if not exist
+                {
+                    // check state of current match in winner perspective
+                    string state = await new Database().Checkmatchstate(ID, team.Doc_id, GAME);
+                    if (state == null) // if match not exist in both perspectives - put in form for post win
+                    {
+                        using (Html.BeginForm("Handle_request", "Match", FormMethod.Post, new { enctype = "multipart/form-data", @class = "matches" }))
+                        {
+                            <div >
+                                <a>proti @team.Name</a>
+                                <br />
+                                <a>koordinátor: @team.User</a>
+                                <br />
+                                <button class="matchbutton" type="submit" name="data" value="@team.Name">vyhrál jsem</button>
+                            </div>
+                        }
+
+                    }
+                    if (state == "active") // if user is winner, then put this "waiting for approve" html
+                    {
+                        <div class="matches">
+                            <h2>proti @team.Name</h2>
+                            <br />
+                            <a>koordinátor: @team.User</a>
+                            <br />
+                            <h3>čeká na schválení</h3>
+                        </div>
+                    }
+                    if (state == "done") // if user is winner, and match is approved, then:
+                    {
+                        <div class="matches">
+                            <a>proti @team.Name</a>
+                            <br />
+                            <a>koordinátor: @team.User</a>
+                            <br />
+                            <h3 style="color : greenyellow">Schváleno, tento turnaj jsi vyhrál</h3>
+                        </div>
+                    }
+                }
+                else
+                {
+                    if (matchstate == "active") // if user is loser, then put this "waiting for approve" html
+                    {
+                        using (Html.BeginForm("Aproach_lose", "Match"))
+                        {
+                            <div class="matches">
+                                <a>proti @team.Name</a>
+                                <br />
+                                <a>koordinátor: @team.User</a>
+                                <br />
+                                <button class="matchbutton" type="submit" name="data" value="@team.Name">schválit prohru</button>
+                            </div>
+                        }
+                    }
+                    else // if user is loser, and match is approved, then:
+                    {
+                        <div class="matches">
+                            <a>proti @team.Name</a>
+                            <br />
+                            <a>koordinátor: @team.User</a>
+                            <br />
+                            <h3 style="color : orangered">prohra byla schválena</h3>
+                        </div>
+                    }
+
+
+                }
+                
+            }
+
+        }
+
+
+
+    }
+    else 
+    {
+        <h1>Tvoje skupina je prázdná :(</h1>
+    }
+}
+</div>

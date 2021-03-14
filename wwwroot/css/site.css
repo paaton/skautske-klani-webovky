@@ -1,0 +1,225 @@
+﻿
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+/* Ej more muj css
+------------------------------------------------------------------*/
+@font-face { /* skautbold font import*/
+    font-family: 'skautbold';
+    src: url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.eot');
+    src: url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.eot? #iefix') format('embedded-opentype');
+    src: url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.woff') format('woff'),
+            url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.woff2') format('woff2'),
+         url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.otf') format('opentype'),
+         url('https://cdn.skauting.cz/fonts/skaut-bold-webfont.svg#skautbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face { /* themix font import*/
+    font-family: 'themix';
+    src: url('https://cdn.skauting.cz/fonts/TheMix_LT_400.eot');
+    src: url('https://cdn.skauting.cz/fonts/TheMix_LT_400.eot? #iefix') format('embedded-opentype');
+    src: url('https://cdn.skauting.cz/fonts/TheMix_LT_400.woff') format('woff'), url('https://cdn.skauting.cz/fonts/TheMix_LT_400.woff2') format('woff2'), url('https://cdn.skauting.cz/fonts/TheMix_LT_400.otf') format('opentype'), url('https://cdn.skauting.cz/fonts/TheMix_LT_400.svg#themix') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+
+main {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #209CFF;
+}
+
+
+.title {
+    border: 5px solid #015EEA;
+    border-radius: 20px;
+    font-family: "skautbold", Bookman, URW Bookman L, serif;
+    margin-bottom: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input {
+    text-align: center;
+    font-family: "themix";
+    color: #000000;
+    background-color: #209CFF;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.5s;
+    transition: all .2s ease-in-out;
+    margin-bottom: 15px;
+    width: 200px;
+    height: 30px;
+    outline-width: 2px;
+    outline-color: black;
+}
+
+    .input:focus {
+        outline: none;
+        background-color: #015EEA;
+        transform: scale(1.03);
+    }
+
+    .input::-webkit-input-placeholder {
+        color: #000000;
+    }
+
+.select_game {
+    text-align: center;
+    font-family: "themix";
+    background-color: #209CFF;
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+}
+
+    .select_game:focus {
+        background-color: #015EEA;
+        outline: none;
+    }
+
+.button {
+    text-align: center;
+    font-family: "themix";
+    background-color: #209CFF;
+    border-radius: 10px;
+    color: black;
+    width: 80px;
+    height: 42px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: background-color 0.3s;
+    transition: all .2s ease-in-out;
+    vertical-align: middle;
+}
+
+    .button:hover {
+        transform: scale(1.1);
+    }
+
+    .button:focus {
+        background-color: #015EEA;
+        outline: none;
+    }
+
+.nav-right {
+    float : right;
+    direction : rtl
+
+}
+.center {
+    text-align : center
+}
+
+.normal_text {
+    font-family: "themix";
+    color: #00bff9;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.conclusion {
+    text-align: right;
+    font-family: "skautbold";
+    color: #209CFF;
+}
+
+.nav-color {
+    color: #209CFF;
+}
+
+.matches {
+    font-family: "themix";
+    color: #209CFF;
+    text-align: center;
+    border: 5px solid #015EEA;
+    border-radius: 20px;
+    margin-bottom: 40px;
+    text-overflow: ellipsis;
+    width: 500px;
+    white-space: nowrap;
+    align-content: center;
+}
+
+.matchbutton {
+    text-align: center;
+    font-family: "themix";
+    background-color: #209CFF;
+    border-radius: 10px;
+    color: black;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
